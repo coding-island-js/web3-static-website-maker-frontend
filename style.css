@@ -112,6 +112,13 @@ button:disabled {
   margin-left: 0.5vw;
 }
 
+.buttonRequired:after {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-100);
+  color: var(--color-complimentary-font);
+  margin-left: 0.5vw;
+}
+
 .website-div {
   visibility: hidden;
 }

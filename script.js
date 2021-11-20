@@ -1,24 +1,39 @@
 console.log("hello");
 
-// select file input
-const fileInput = document.getElementById("image-file-id");
+// select button
+const createWebsiteButton = document.getElementById("generate-button-id");
 
 // add event listener
-fileInput.addEventListener("change", () => {
-  uploadFile(fileInput.files[0]);
-});
-
-async function uploadFile(file) {
+createWebsiteButton.addEventListener("click", () => {
   // get API token
   const apiTokenInput = document.getElementById("api-token-id").value;
 
   // get website title input
   const websiteTitleInput = document.getElementById("website-title-id").value;
+
+  // select file input
+  const fileInput = document.getElementById("image-file-id");
+
+  // enable button after required fields are filled in
+  if (apiTokenInput != "" && websiteTitleInput != "" && fileInput.value != "") {
+    uploadFile(fileInput.files[0], apiTokenInput, websiteTitleInput);
+  } else {
+    document.getElementById("buttonRequired-id").style.color = "orange";
+    document.getElementById("buttonRequired-id").innerText =
+      "fill in required fields";
+  }
+});
+
+async function uploadFile(file, apiToken, websiteTitle) {
+  // create random 4 digit number to uniquely identify folder name
+  var val = Math.floor(1000 + Math.random() * 9000);
+  console.log(String(val));
   // add file to FormData object
   const userFormData = new FormData();
+  userFormData.append("folderName", String(val));
   userFormData.append("image", file);
-  userFormData.append("websiteTitle", websiteTitleInput);
-  userFormData.append("token", apiTokenInput);
+  userFormData.append("websiteTitle", websiteTitle);
+  userFormData.append("token", apiToken);
   console.log([...userFormData]);
 
   // send `POST` request
