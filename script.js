@@ -45,9 +45,13 @@ async function uploadFile(file, apiToken, websiteTitle) {
     },
     body: userFormData,
   })
-    .then((res) => res.json())
+    .then((res) => {
+      console.log(res.status);
+      return res.json();
+    })
     .then((data) => {
-      console.log(data.url);
+      //    console.log(data.url);
+      console.log(data.error);
       const websiteDiv = document.getElementById("website-div-id");
       const websiteLink = document.getElementById("web3-website-link-id");
       websiteDiv.style.visibility = "visible";
