@@ -119,6 +119,12 @@ button:disabled {
   margin-left: 0.5vw;
 }
 
+.incorrectAPI {
+  font-size: var(--font-size-100);
+  color: red;
+  margin-left: 0.5vw;
+}
+
 .website-div {
   visibility: hidden;
 }

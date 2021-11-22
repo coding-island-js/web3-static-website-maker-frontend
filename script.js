@@ -51,9 +51,14 @@ async function uploadFile(file, apiToken, websiteTitle) {
       console.log(res.status);
       if (res.status == 403) {
         console.log("API token is incorrect");
-        return false;
+        document.getElementById("api-token-id").style.borderColor = "red";
+        document.getElementById("incorrectAPI-id").innerText = "inline-block";
+        throw Error("res status error: " + res.status);
       }
-      return res.json();
+
+      if (res.status === 200) {
+        return res.json();
+      }
     })
     .then((data) => {
       //    console.log(data.url);
