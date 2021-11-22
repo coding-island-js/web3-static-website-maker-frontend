@@ -37,7 +37,7 @@ async function uploadFile(file, apiToken, websiteTitle) {
   console.log([...userFormData]);
 
   // send `POST` request
-  fetch("http://localhost:8080/upload-files", {
+  await fetch("http://localhost:8080/upload-files", {
     mode: "cors",
     method: "POST",
     headers: {
@@ -47,15 +47,48 @@ async function uploadFile(file, apiToken, websiteTitle) {
   })
     .then((res) => {
       console.log(res.status);
+      if (res.status == 403) {
+        console.log("API token is incorrect");
+        return false;
+      }
       return res.json();
     })
     .then((data) => {
       //    console.log(data.url);
-      console.log(data.error);
       const websiteDiv = document.getElementById("website-div-id");
       const websiteLink = document.getElementById("web3-website-link-id");
       websiteDiv.style.visibility = "visible";
       websiteLink.href = data.url;
     })
     .catch((err) => console.error(err));
+}
+
+// sanitize input
+var tagBody = "(?:[^\"'>]|\"[^\"]*\"|'[^']*')*";
+
+var tagOrComment = new RegExp(
+  "<(?:" +
+    // Comment body.
+    "!--(?:(?:-*[^->])*--+|-?)" +
+    // Special "raw text" elements whose content should be elided.
+    "|script\\b" +
+    tagBody +
+    ">[\\s\\S]*?</script\\s*" +
+    "|style\\b" +
+    tagBody +
+    ">[\\s\\S]*?</style\\s*" +
+    // Regular name
+    "|/?[a-z]" +
+    tagBody +
+    ")>",
+  "gi"
+);
+
+async function sanitizeInput(html) {
+  var oldHtml;
+  do {
+    oldHtml = html;
+    html = html.replace(tagOrComment, "");
+  } while (html !== oldHtml);
+  return html.replace(/</g, "&lt;");
 }
