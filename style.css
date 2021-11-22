@@ -126,7 +126,12 @@ button:disabled {
 }
 
 .website-div {
+  border: 5px solid orange;
   visibility: hidden;
+  max-width: fit-content;
+  padding: 1vw;
+  margin: auto;
+  animation: blink 1.5s infinite;
 }
 
 .loading {
@@ -152,5 +157,17 @@ button:disabled {
   }
   100% {
     transform: translateX(340%);
+  }
+}
+
+@keyframes blink {
+  0% {
+    border-color: lightgreen;
+  }
+  50% {
+    border-color: darkgreen;
+  }
+  100% {
+    border-color: lightgreen;
   }
 }
