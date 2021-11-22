@@ -9,16 +9,16 @@ createWebsiteButton.addEventListener("click", async () => {
   const apiTokenInput = document.getElementById("api-token-id").value;
 
   // get website title input
-  const websiteTitleInput = document.getElementById("website-title-id").value;
-
-  const websiteSanitizedTitleInput = await sanitizeInput(websiteTitleInput);
+  const websiteTitleInput = await sanitizeInput(
+    document.getElementById("website-title-id").value
+  );
 
   // select file input
   const fileInput = document.getElementById("image-file-id");
 
   // enable button after required fields are filled in
   if (apiTokenInput != "" && websiteTitleInput != "" && fileInput.value != "") {
-    uploadFile(fileInput.files[0], apiTokenInput, websiteSanitizedTitleInput);
+    uploadFile(fileInput.files[0], apiTokenInput, websiteTitleInput);
   } else {
     document.getElementById("buttonRequired-id").style.color = "orange";
     document.getElementById("buttonRequired-id").innerText =
@@ -59,9 +59,12 @@ async function uploadFile(file, apiToken, websiteTitle) {
       //    console.log(data.url);
       const websiteDiv = document.getElementById("website-div-id");
       const websiteLink = document.getElementById("web3-website-link-id");
+      const fileInput = document.getElementById("image-file-id");
+      // get website title input
+      const websiteTitleInput = document.getElementById("website-title-id");
       websiteDiv.style.visibility = "visible";
       websiteLink.href = data.url;
-      websiteTitleInput = "";
+      websiteTitleInput.value = "";
       fileInput.value = "";
     })
     .catch((err) => console.error(err));
