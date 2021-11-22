@@ -130,8 +130,6 @@ button:disabled {
 }
 
 .loading {
-  text-transform: uppercase;
-  color: white;
   position: relative;
   overflow: hidden;
 }
@@ -144,7 +142,6 @@ button:disabled {
   right: 0;
   content: "";
   z-index: 1;
-  width: 40px;
   background: pink;
   animation: slide 1.5s ease infinite;
 }
