@@ -59,6 +59,8 @@ async function uploadFile(file, apiToken, websiteTitle) {
       const websiteLink = document.getElementById("web3-website-link-id");
       websiteDiv.style.visibility = "visible";
       websiteLink.href = data.url;
+      websiteTitleInput = "";
+      fileInput.value = "";
     })
     .catch((err) => console.error(err));
 }
