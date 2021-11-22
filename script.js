@@ -37,6 +37,8 @@ async function uploadFile(file, apiToken, websiteTitle) {
   userFormData.append("websiteTitle", websiteTitle);
   userFormData.append("token", apiToken);
   console.log([...userFormData]);
+  createWebsiteButton.classList.add("loading");
+  createWebsiteButton.innerText = "wait";
 
   // send `POST` request
   await fetch("http://localhost:8080/upload-files", {
@@ -52,11 +54,14 @@ async function uploadFile(file, apiToken, websiteTitle) {
       if (res.status == 403) {
         console.log("API token is incorrect");
         document.getElementById("api-token-id").style.borderColor = "red";
-        document.getElementById("incorrectAPI-id").innerText = "inline-block";
+        document.getElementById("incorrectAPI-id").innerText = "API token is incorrect";
+        createWebsiteButton.classList.remove("loading");
+        createWebsiteButton.innerText = "Create Website on Web3.storage";
         throw Error("res status error: " + res.status);
       }
-
       if (res.status === 200) {
+        createWebsiteButton.classList.remove("loading");
+        createWebsiteButton.innerText = "Create Website on Web3.storage";
         return res.json();
       }
     })
