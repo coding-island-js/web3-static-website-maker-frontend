@@ -4,19 +4,21 @@ console.log("hello");
 const createWebsiteButton = document.getElementById("generate-button-id");
 
 // add event listener
-createWebsiteButton.addEventListener("click", () => {
+createWebsiteButton.addEventListener("click", async () => {
   // get API token
   const apiTokenInput = document.getElementById("api-token-id").value;
 
   // get website title input
   const websiteTitleInput = document.getElementById("website-title-id").value;
 
+  const websiteSanitizedTitleInput = await sanitizeInput(websiteTitleInput);
+
   // select file input
   const fileInput = document.getElementById("image-file-id");
 
   // enable button after required fields are filled in
   if (apiTokenInput != "" && websiteTitleInput != "" && fileInput.value != "") {
-    uploadFile(fileInput.files[0], apiTokenInput, websiteTitleInput);
+    uploadFile(fileInput.files[0], apiTokenInput, websiteSanitizedTitleInput);
   } else {
     document.getElementById("buttonRequired-id").style.color = "orange";
     document.getElementById("buttonRequired-id").innerText =
