@@ -1,4 +1,14 @@
-console.log("hello");
+let environment = "dev";
+
+let url;
+
+if (environment === "dev") {
+  url = "http://localhost:8080/upload-files";
+}
+
+if (environment === "prod") {
+  url = "https://web3-website-maker.herokuapp.com/upload-files";
+}
 
 // select button
 const createWebsiteButton = document.getElementById("generate-button-id");
@@ -55,7 +65,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   document.getElementById("buttonRequired-id").innerText = "";
 
   // send `POST` request
-  await fetch("https://web3-website-maker.herokuapp.com/upload-files", {
+  await fetch(url, {
     mode: "cors",
     method: "POST",
     headers: {
