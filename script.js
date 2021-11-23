@@ -58,7 +58,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   document.getElementById("incorrectAPI-id").innerText = "";
 
   // send `POST` request
-  await fetch(prodURL, {
+  await fetch(devURL, {
     mode: "cors",
     method: "POST",
     headers: {
