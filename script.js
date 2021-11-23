@@ -56,7 +56,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   websiteLink.style.display = "none";
   document.getElementById("buttonRequired-id").innerText = "";
   document.getElementById("incorrectAPI-id").innerText = "";
-  document.getElementById("api-token-id").style.borderColor = "initial";
+  document.getElementById("api-token-id").style.borderColor = "#1a45df";
 
   // send `POST` request
   await fetch(prodURL, {
