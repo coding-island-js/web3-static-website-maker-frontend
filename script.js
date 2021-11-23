@@ -59,7 +59,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   document.getElementById("api-token-id").style.borderColor = "initial";
 
   // send `POST` request
-  await fetch(devURL, {
+  await fetch(prodURL, {
     mode: "cors",
     method: "POST",
     headers: {
