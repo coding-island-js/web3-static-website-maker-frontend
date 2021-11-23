@@ -19,11 +19,13 @@
   </head>
   <body>
     <header>
-      <div class="logo-title">Web3 Static Website Maker</div>
+      <div class="logo-title">Web3 Decentralized Website Maker</div>
     </header>
     <main>
       <h1>Create a one page website hosted on web3.storage</h1>
       <br><br>
+      <p>Get your <a href="https://docs.web3.storage/#get-an-api-token" target="_blank"> Free Web3.storage API Token here</a></p>
+      <br>
       <label for="website-title">Web3.storage API Token</label>
           <span class="inputRequired"></span>
           <span class="incorrectAPI" id="incorrectAPI-id"></span>
@@ -32,19 +34,19 @@
             type="text"
             name="api-token"
             id="api-token-id"
-            placeholder="ex - edggrtrts4iOiJIUzdfdgdgdg"
+            placeholder="API token not saved on the server"
             required
             autofocus
           />
           <br />
           <br />
-          <label for="website-title">Website Title</label>
+          <label for="header-title">Header Title</label>
           <span class="inputRequired"></span>
           <br />
           <input
             type="text"
-            name="website-title"
-            id="website-title-id"
+            name="header-title"
+            id="header-title-id"
             placeholder="ex - I love pineapple on pizza"
             required
           />
@@ -57,6 +59,14 @@
             type="file" accept="image/*" name="image-file"
             id="image-file-id" required
           /></input>
+          <br />
+          <br />
+          <label for="image-alt-text">Image Alt Text</label>
+          <br />
+          <textarea
+            name="image-alt-text"
+            id="image-alt-text-id"
+            placeholder="ex - a slice of pizza with pineapple toppings on a paper plate"></textarea>
           <br /><br />
           <button id="generate-button-id" data-cy="generate-button" >
             Create Website on Web3.storage</button
@@ -68,7 +78,7 @@
           </div>         
     </main>
     <footer>
-      made with love @codingraj
+      made with <span class="heart">&hearts;</span> @codingraj
     </footer>
   </body>
 </html>

@@ -1,17 +1,5 @@
-/* Box sizing rules */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Make images easier to work with */
-img {
-  max-width: 80%;
-}
-
 :root {
-  --font-family-header: "Merriweather Sans", sans-serif;
+  --font-family: "Merriweather Sans", sans-serif;
 
   --color-background-header-footer: #d1bdf7;
   --color-background-body: #ffffff;
@@ -34,6 +22,19 @@ img {
   --font-size-xl: clamp(2rem, 1rem + 3vw, 5.75rem);
 }
 
+/* Box sizing rules */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 80%;
+}
+
 h1 {
   font-size: var(--font-size-700);
   line-height: 1.1;
@@ -48,7 +49,6 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
-  font-family: var(--font-family-header);
   text-align: center;
 }
 
@@ -70,9 +70,7 @@ input {
   padding: 0.75em 0.5em;
   border: 2px solid;
   border-radius: 4px;
-}
-
-input[type="text"] {
+  font-size: var(--font-size-300);
   width: 50%;
 }
 
@@ -85,6 +83,18 @@ label {
 input:required {
   border-color: #1a45df;
   border-width: 2px;
+}
+textarea {
+  width: 50%;
+  height: 15%;
+  padding: 0.75em 0.5em;
+  border: 2px solid;
+  border-radius: 4px;
+}
+
+::placeholder {
+  color: var(--color-placeholder-font);
+  font-size: var(--font-size-100);
 }
 
 /* # buttons  */
@@ -113,7 +123,6 @@ button:disabled {
 }
 
 .buttonRequired:after {
-  font-family: var(--font-family-primary);
   font-size: var(--font-size-100);
   color: var(--color-complimentary-font);
   margin-left: 0.5vw;
@@ -170,4 +179,8 @@ button:disabled {
   100% {
     border-color: lightgreen;
   }
+}
+
+.heart {
+  color: red;
 }
