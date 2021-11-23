@@ -1,32 +1,37 @@
-const devURL = "http://localhost:8080/upload-files";
+let env = "prod";
+let url;
 
-const prodURL = "https://web3-website-maker.herokuapp.com/upload-files";
+if (env === "dev") {
+  url = "http://localhost:8080/upload-files";
+}
+
+if (env === "prod") {
+  url = "https://web3-website-maker.herokuapp.com/upload-files";
+}
 
 // select button
 const createWebsiteButton = document.getElementById("generate-button-id");
 
-// add event listener
+// add click event listener that
+// will get Input Ids, Input Values
 createWebsiteButton.addEventListener("click", async () => {
-  // get API token
-  const apiTokenInput = document.getElementById("api-token-id").value;
-
-  // select file input
+  const apiTokenInput = document.getElementById("api-token-id");
   const fileInput = document.getElementById("image-file-id");
-
-  // select header title input
   const headerTitleInput = document.getElementById("header-title-id");
+  const altImageInput = document.getElementById("image-alt-text-id");
 
-  // select alt text for Image
-  const altImage = document.getElementById("image-alt-text-id").value;
-
-  // enable button after required fields are filled in
+  // check if Input fields is complete
+  // if complete then call Function uploadFile
+  // pass file selected, api token value, alt image value, and header title value
   if (
-    apiTokenInput != "" &&
+    apiTokenInput.value != "" &&
     headerTitleInput.value != "" &&
     fileInput.value != ""
   ) {
-    uploadFile(fileInput.files[0], apiTokenInput, altImage, headerTitleInput);
+    uploadFile(fileInput, apiTokenInput, altImageInput, headerTitleInput);
   } else {
+    // if the fields are incomplete
+    // display error message
     document.getElementById("buttonRequired-id").style.display = "block";
     document.getElementById("buttonRequired-id").style.color = "orange";
     document.getElementById("buttonRequired-id").innerText =
@@ -34,22 +39,24 @@ createWebsiteButton.addEventListener("click", async () => {
   }
 });
 
-async function uploadFile(file, apiToken, altImage, headerTitleInput) {
+async function uploadFile(
+  fileInput,
+  apiTokenInput,
+  altImageInput,
+  headerTitleInput
+) {
   // create random 4 digit number to uniquely identify folder name
-  var val = Math.floor(1000 + Math.random() * 9000);
-  console.log(String(val));
+  var folderName = String(Math.floor(1000 + Math.random() * 9000));
 
   const websiteLink = document.getElementById("web3-website-link-id");
-  const fileInput = document.getElementById("image-file-id");
-  // get website title input
 
   // add file to FormData object
   const userFormData = new FormData();
-  userFormData.append("folderName", String(val));
-  userFormData.append("image", file);
+  userFormData.append("folderName", folderName);
+  userFormData.append("image", fileInput.files[0]);
   userFormData.append("headerTitle", headerTitleInput.value);
-  userFormData.append("token", apiToken);
-  userFormData.append("altImage", altImage);
+  userFormData.append("token", apiTokenInput.value);
+  userFormData.append("altImage", altImageInput.value);
   console.log([...userFormData]);
   createWebsiteButton.classList.add("loading");
   createWebsiteButton.innerText = "wait";
@@ -59,7 +66,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   document.getElementById("api-token-id").style.borderColor = "#1a45df";
 
   // send `POST` request
-  await fetch(devURL, {
+  await fetch(url, {
     mode: "cors",
     method: "POST",
     headers: {
@@ -69,15 +76,6 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   })
     .then((res) => {
       console.log(res.status);
-      if (res.status == 403) {
-        console.log("API token is incorrect");
-        document.getElementById("api-token-id").style.borderColor = "red";
-        document.getElementById("incorrectAPI-id").innerText =
-          "API token is incorrect";
-        createWebsiteButton.classList.remove("loading");
-        createWebsiteButton.innerText = "Create Website on Web3.storage";
-        throw Error("res status error: " + res.status);
-      }
       if (res.status === 200) {
         createWebsiteButton.classList.remove("loading");
         createWebsiteButton.innerText = "Create Website on Web3.storage";
@@ -85,7 +83,6 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
       }
     })
     .then((data) => {
-      //    console.log(data.url);
       websiteLink.style.display = "block";
       websiteLink.href = data.url;
       headerTitleInput.value = "";

@@ -31,7 +31,6 @@ body {
   --font-family: "Merriweather Sans", sans-serif;
 
   --color-background-header-footer: #d1bdf7;
-  --color-background-body: #ffffff;
 
   --color-button-background: #1a45df;
 
@@ -122,6 +121,8 @@ label {
   line-height: 2;
 }
 
+/* # input and textarea fields   */
+
 input:required {
   border-color: #1a45df;
   border-width: 2px;
@@ -159,10 +160,6 @@ button {
   text-align: center;
 }
 
-button:disabled {
-  background-color: lightgray;
-  color: var(--color-primary-font);
-}
 
 .inputRequired:after {
   content: "required";
@@ -170,6 +167,8 @@ button:disabled {
   color: var(--color-complimentary-font);
   margin-left: 0.5vw;
 }
+
+/* # error message display and style   */
 
 .buttonRequired {
   display: none;
@@ -187,6 +186,8 @@ button:disabled {
   margin-left: 0.5vw;
 }
 
+/* # decentralized website link returned from server   */
+
 .web3-website-link {
   border: 5px solid orange;
   padding: 1vw;
@@ -195,6 +196,8 @@ button:disabled {
   animation: blink 1.5s infinite;
   display: none;
 }
+
+/* # loading animation after user clicks button   */
 
 .loading {
   position: relative;
@@ -233,6 +236,8 @@ button:disabled {
     border-color: lightgreen;
   }
 }
+
+/* # heart color for footer   */
 
 .heart {
   color: red;
