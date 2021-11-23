@@ -11,6 +11,7 @@ createWebsiteButton.addEventListener("click", async () => {
   // select file input
   const fileInput = document.getElementById("image-file-id");
 
+  // select header title input
   const headerTitleInput = document.getElementById("header-title-id");
 
   // select alt text for Image
