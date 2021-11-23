@@ -53,8 +53,9 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   console.log([...userFormData]);
   createWebsiteButton.classList.add("loading");
   createWebsiteButton.innerText = "wait";
-  // websiteDiv.style.visibility = "hidden";
+  websiteLink.style.display = "none";
   document.getElementById("buttonRequired-id").innerText = "";
+  document.getElementById("incorrectAPI-id").innerText = "";
 
   // send `POST` request
   await fetch(devURL, {
