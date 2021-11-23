@@ -90,5 +90,12 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
       headerTitleInput.value = "";
       fileInput.value = "";
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.log("error: " + err);
+      document.getElementById("api-token-id").style.borderColor = "red";
+      document.getElementById("incorrectAPI-id").innerText =
+        "Something went wrong. Your API token might be incorrect";
+      createWebsiteButton.classList.remove("loading");
+      createWebsiteButton.innerText = "Create Website on Web3.storage";
+    });
 }
