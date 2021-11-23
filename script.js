@@ -57,7 +57,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   document.getElementById("buttonRequired-id").innerText = "";
 
   // send `POST` request
-  await fetch(devURL, {
+  await fetch(prodURL, {
     mode: "cors",
     method: "POST",
     headers: {
