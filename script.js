@@ -27,6 +27,7 @@ createWebsiteButton.addEventListener("click", async () => {
   ) {
     uploadFile(fileInput.files[0], apiTokenInput, altImage, headerTitleInput);
   } else {
+    document.getElementById("buttonRequired-id").style.display = "block";
     document.getElementById("buttonRequired-id").style.color = "orange";
     document.getElementById("buttonRequired-id").innerText =
       "fill in required fields";
@@ -38,7 +39,6 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   var val = Math.floor(1000 + Math.random() * 9000);
   console.log(String(val));
 
-  const websiteDiv = document.getElementById("website-div-id");
   const websiteLink = document.getElementById("web3-website-link-id");
   const fileInput = document.getElementById("image-file-id");
   // get website title input
@@ -53,7 +53,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
   console.log([...userFormData]);
   createWebsiteButton.classList.add("loading");
   createWebsiteButton.innerText = "wait";
-  websiteDiv.style.visibility = "hidden";
+  // websiteDiv.style.visibility = "hidden";
   document.getElementById("buttonRequired-id").innerText = "";
 
   // send `POST` request
@@ -84,7 +84,7 @@ async function uploadFile(file, apiToken, altImage, headerTitleInput) {
     })
     .then((data) => {
       //    console.log(data.url);
-      websiteDiv.style.visibility = "visible";
+      websiteLink.style.display = "block";
       websiteLink.href = data.url;
       headerTitleInput.value = "";
       fileInput.value = "";

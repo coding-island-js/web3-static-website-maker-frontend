@@ -23,62 +23,72 @@
     </header>
     <main>
       <h1>Create a one page website hosted on Web3.storage</h1>
-      <br><br>
-      <p>Get your <a href="https://docs.web3.storage/#get-an-api-token" target="_blank"> Free Web3.storage API Token here</a></p>
-      <br>
+      <br /><br />
+      <p>
+        Get your
+        <a href="https://docs.web3.storage/#get-an-api-token" target="_blank">
+          Free Web3.storage API Token here</a
+        >
+      </p>
+      <br />
+      <div class="card">
       <label for="website-title">Web3.storage API Token</label>
-          <span class="inputRequired"></span>
-          <span class="incorrectAPI" id="incorrectAPI-id"></span>
-          <br />
-          <input
-            type="text"
-            name="api-token"
-            id="api-token-id"
-            placeholder="API token not saved on the server"
-            required
-            autofocus
-          />
-          <br />
-          <br />
-          <label for="header-title">Header Title</label>
-          <span class="inputRequired"></span>
-          <br />
-          <input
-            type="text"
-            name="header-title"
-            id="header-title-id"
-            placeholder="ex - I love pineapple on pizza"
-            required
-          />
-          <br />
-          <br />
-          <label for="">Upload Image</label>
-          <span class="inputRequired"></span>
-          <br />
-          <input
-            type="file" accept="image/*" name="image-file"
-            id="image-file-id" required
-          /></input>
-          <br />
-          <br />
-          <label for="image-alt-text">Image Alt Text</label>
-          <br />
-          <textarea
-            name="image-alt-text"
-            id="image-alt-text-id"
-            placeholder="ex - a slice of pizza with pineapple toppings on a paper plate"></textarea>
-          <br /><br />
-          <button id="generate-button-id" data-cy="generate-button" >
-            Create Website on Web3.storage</button
-          >
-          <div class="buttonRequired" id="buttonRequired-id"></div>
-          <br><br>
-          <div class="website-div" id="website-div-id">
-            <a id="web3-website-link-id" target=”_blank”>your new website</a>
-          </div>         
+      <span class="inputRequired"></span>
+      <span class="incorrectAPI" id="incorrectAPI-id"></span>
+      <br />
+      <input
+        type="text"
+        name="api-token"
+        id="api-token-id"
+        placeholder="API token not saved on the server"
+        required
+        autofocus
+      />
+      <br />
+      <br />
+      <label for="header-title">Header Title</label>
+      <span class="inputRequired"></span>
+      <br />
+      <input
+        type="text"
+        name="header-title"
+        id="header-title-id"
+        placeholder="ex - I love pineapple on pizza"
+        required
+      />
+      <br />
+      <br />
+      <label for="">Upload Image</label>
+      <span class="inputRequired"></span>
+      <br />
+      <input
+        type="file"
+        accept="image/*"
+        name="image-file"
+        id="image-file-id"
+        required
+      />
+      <br />
+      <br />
+      <label for="image-alt-text">Image Alt Text</label>
+      <br />
+      <textarea
+        name="image-alt-text"
+        id="image-alt-text-id"
+        placeholder="ex - a slice of pizza with pineapple toppings on a paper plate"
+      ></textarea>
+      <br />
+      <div class="buttonRequired" id="buttonRequired-id"></div>
+      <br />
+      <button id="generate-button-id" data-cy="generate-button">
+        Create Website on Web3.storage
+      </button>
+      <br /><br /><br />
+      <a class="web3-website-link" id="web3-website-link-id" target="_blank”">
+        your new website
+      </a>
+    </div>
     </main>
-    <footer>
-      made with <span class="heart">&hearts;</span> @codingraj
-    </footer>
+    <footer>made with <span class="heart">&hearts;</span> @codingraj</footer>
   </body>
 </html>

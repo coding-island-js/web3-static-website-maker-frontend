@@ -1,3 +1,32 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+.logo-title {
+  margin: 0;
+}
+
+/* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
 :root {
   --font-family: "Merriweather Sans", sans-serif;
 
@@ -22,19 +51,6 @@
   --font-size-xl: clamp(2rem, 1rem + 3vw, 5.75rem);
 }
 
-/* Box sizing rules */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-}
-
-/* Make images easier to work with */
-img {
-  max-width: 80%;
-}
-
 h1 {
   font-size: var(--font-size-700);
   line-height: 1.1;
@@ -45,25 +61,51 @@ h1 {
 }
 
 /* Set Grid Layout, min-height, some color, and padding on the top and bottom */
+
 body {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 5fr auto;
   min-height: 100vh;
+  gap: 2vw;
+  font-family: var(--font-family);
   text-align: center;
-}
-
-main {
-  padding-block: 2vw;
 }
 
 header {
   font-size: var(--font-size-700);
+  grid-row: 1 / 2;
+  padding-block: 1vw;
+  background: var(--color-background-header-footer);
 }
 
-header,
+main {
+  grid-row: 2 / 3;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
 footer {
-  padding-block: 2vw;
+  padding-block: 1vw;
+  grid-row: 3 / 4;
   background: var(--color-background-header-footer);
+}
+
+/* # card   */
+
+.card {
+  background: var(--color-background-header-footer);
+  outline: none;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 90vw;
+  margin: auto;
+}
+
+@media only screen and (min-width: 50em) {
+  .card {
+    width: 60vw;
+  }
 }
 
 input {
@@ -71,7 +113,7 @@ input {
   border: 2px solid;
   border-radius: 4px;
   font-size: var(--font-size-300);
-  width: 50%;
+  width: 90%;
 }
 
 label {
@@ -85,11 +127,18 @@ input:required {
   border-width: 2px;
 }
 textarea {
-  width: 50%;
+  width: 90%;
   height: 15%;
   padding: 0.75em 0.5em;
   border: 2px solid;
   border-radius: 4px;
+}
+
+@media only screen and (min-width: 50em) {
+  input,
+  textarea {
+    width: 70%;
+  }
 }
 
 ::placeholder {
@@ -122,6 +171,10 @@ button:disabled {
   margin-left: 0.5vw;
 }
 
+.buttonRequired {
+  display: none;
+}
+
 .buttonRequired:after {
   font-size: var(--font-size-100);
   color: var(--color-complimentary-font);
@@ -134,13 +187,13 @@ button:disabled {
   margin-left: 0.5vw;
 }
 
-.website-div {
+.web3-website-link {
   border: 5px solid orange;
-  visibility: hidden;
-  max-width: fit-content;
   padding: 1vw;
+  width: fit-content;
   margin: auto;
   animation: blink 1.5s infinite;
+  display: none;
 }
 
 .loading {
