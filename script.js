@@ -1,6 +1,6 @@
 // declare environment
 // to determine API url
-let env = "dev";
+let env = "prod";
 let url;
 
 if (env === "dev") {
