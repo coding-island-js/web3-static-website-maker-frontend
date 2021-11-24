@@ -31,7 +31,6 @@ body {
   --font-family: "Merriweather Sans", sans-serif;
 
   --color-background-header-footer: #d1bdf7;
-
   --color-button-background: #1a45df;
 
   --color-primary-font: #000036;
@@ -80,8 +79,6 @@ header {
 
 main {
   grid-row: 2 / 3;
-  padding-left: 5vw;
-  padding-right: 5vw;
 }
 
 footer {
@@ -159,7 +156,6 @@ button {
   cursor: pointer;
   text-align: center;
 }
-
 
 .inputRequired:after {
   content: "required";

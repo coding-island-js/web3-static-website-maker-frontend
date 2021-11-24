@@ -1,4 +1,6 @@
-let env = "prod";
+// declare environment
+// to determine API url
+let env = "dev";
 let url;
 
 if (env === "dev") {
@@ -9,7 +11,7 @@ if (env === "prod") {
   url = "https://web3-website-maker.herokuapp.com/upload-files";
 }
 
-// select button
+// select button Id
 const createWebsiteButton = document.getElementById("generate-button-id");
 
 // add click event listener that
@@ -45,12 +47,14 @@ async function uploadFile(
   altImageInput,
   headerTitleInput
 ) {
-  // create random 4 digit number to uniquely identify folder name
+  // create random 4 digit number to create folder on server with a unique name
   var folderName = String(Math.floor(1000 + Math.random() * 9000));
 
+  // grab website link element ID
+  // we will use this to display the link after a successful response from the server
   const websiteLink = document.getElementById("web3-website-link-id");
 
-  // add file to FormData object
+  // add file and user input to FormData object
   const userFormData = new FormData();
   userFormData.append("folderName", folderName);
   userFormData.append("image", fileInput.files[0]);
@@ -75,7 +79,7 @@ async function uploadFile(
     body: userFormData,
   })
     .then((res) => {
-      console.log(res.status);
+      // if status is OK from server, then set the button to its original text
       if (res.status === 200) {
         createWebsiteButton.classList.remove("loading");
         createWebsiteButton.innerText = "Create Website on Web3.storage";
@@ -83,12 +87,16 @@ async function uploadFile(
       }
     })
     .then((data) => {
+      // display the website link with the URL from the backend server
       websiteLink.style.display = "block";
       websiteLink.href = data.url;
       headerTitleInput.value = "";
       fileInput.value = "";
     })
     .catch((err) => {
+      // catch error and display a message
+      // apply border styling
+      // set the button to its original text
       console.log("error: " + err);
       document.getElementById("api-token-id").style.borderColor = "red";
       document.getElementById("incorrectAPI-id").innerText =
